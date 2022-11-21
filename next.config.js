@@ -3,4 +3,20 @@ const nextConfig = {
   reactStrictMode: true,
 }
 
+
+module.exports = {
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/Home',
+        permanent: false,
+      },
+    ]
+  },
+}
+
+
+
+
 module.exports = nextConfig
