@@ -14,8 +14,10 @@ export default function CheckBox({ name, label, ...props }: CheckBoxProps) {
     return (
         
         <CustomCheckBox>
-            <input type="checkbox" id={name} {...props} />
-            <label >{label}</label>
+            
+                <input type="checkbox"  {...props}  />
+                <label htmlFor="squaredFour">{label}</label>
+            
         </CustomCheckBox>
     );
 }

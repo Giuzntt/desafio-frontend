@@ -17,7 +17,7 @@ export const Box = styled("div", {
         top: 0,
         left: '5px',
         fontSize: '1rem',
-        color: 'var(--txt-home)',
+        color: 'var(--text-placeholder)',
         transition: 'all 0.2s',
         transformOrigin: '0% 0%',
         pointerEvents: 'none',
@@ -26,7 +26,31 @@ export const Box = styled("div", {
 
     },
 
+   
+    'input[type="date"]': {
+        color: '#666666',
 
+        '&::before': {
+            content: 'attr(placeholder)',
+            position: "absolute",
+            color: '#999999',
+        },
+
+        '&:focus, &valid': {
+            color: 'var(--txt-home)',
+           
+
+            '& + .placeholder': {
+                fontSize: '0.8rem',
+                transform: 'translateY(-50px)',
+                color: 'var(--txt-home)',
+            },
+
+            '&::before': {
+                content: ' ',
+            },
+        }
+    },
 
 
     
@@ -37,6 +61,7 @@ export const Box = styled("div", {
         width: '100%',
         height: '45px',
         border: '1px solid var(--bg-text-field)',
+
         backgroundColor: 'var(--bg-text-field)',
         borderRadius: '4px',
         padding: '10px 12px',
@@ -44,13 +69,13 @@ export const Box = styled("div", {
         color: 'var(--txt-home)',
         '&:focus, &:valid': {
             outline: 'none',
-            
             border: '1px solid var(--border-text-field)',
 
 
             '& + .placeholder': {
                 transform: 'scale(0.6) translateY(-22px)',
                 fontSize: '15px',
+                
                 color: 'var(--text-placeholder)',
             },
 
@@ -58,17 +83,13 @@ export const Box = styled("div", {
 
 
         },
+
+
+       
        
 
 
 
-        // '&:not(:placeholder-shown)': {
-        //     '& + .placeholder': {
-        //         transform: 'scale(0.8) translateY(-10px)',
-        //         color: 'var(--text-placeholder)',
-                 
-        //     }
-        // }
     
     }
 

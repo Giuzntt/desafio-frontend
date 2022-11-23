@@ -8,8 +8,7 @@ export const globalStyles = globalCss({
         fontFamily: 'Poppins',
 
         // remove scrollX and scrollY
-        overflowX: 'hidden',
-        overflowY: 'hidden'
+        
     },
     'body':{
         backgroundColor: 'var(--bg-body)',
@@ -32,5 +31,7 @@ export const globalStyles = globalCss({
         '--quinary': '#00FFFF',
         '--bg-home': '#1D1D1D',
         '--txt-home': '#E7E7E7',
+        '--bg-sphere': '#47E0FF',
+        '--bg-cardfeedback': 'rgba(29, 29, 29, 0.7);',
     }
 });

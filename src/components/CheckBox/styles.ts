@@ -8,44 +8,39 @@ export const CustomCheckBox = styled('div', {
     display: 'flex',
     alignItems: 'center',
     gap: '0.5rem',
+    cursor: 'pointer',
+    userSelect: 'none',
+    
 
-   'input[type="checkbox"]': {
-  /* ...existing styles */
-        display: 'grid',
-        placeContent: 'center',
-
-       '&::before': {
-        content: "",
-    width: '0.65em',
-  height: '0.65em',
-  transform: 'scale(0)',
-  transition: '120ms transform ease-in-out',
-  boxShadow: 'inset 1em 1em var(--form-control-color)',
-    },
-
-    '&:checked::before': {
-    transform: 'scale(1)',
-    }
-    },
-
-
-
-
-    //styleName: Fonts/100/Light,
-
-    '& label': {
-        color: 'var(--txt-home)',
-      
-        fontSize: '0.875rem',
-        fontWeight: '300',
-        lineHeight: '1.125rem',
-        letterSpacing: '0em',
-        textAlign: 'center',
+    'input[type="checkbox"]': {
+        /* removing default appearance */
+        appearance: 'none',
+        /* adding custom appearance */
+        backgroundColor: ' rgba(29, 29, 29, 0.5)',
+        border: '1px solid #151515',
+        borderRadius: '4px',
+        width: '20px',
+        height: '20px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: 'pointer',
+        '&:hover': {
+            backgroundColor: 'var(--green)',
+        },
+        '&:focus': {
+            outline: 'none',
+            boxShadow: '0 0 0 2px  #151515',
+        },
+        '&:checked': {
+            backgroundColor: 'var(--green)',
+        },
     }
 
+    
+    });
 
 
-})
 
 
 
