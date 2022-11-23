@@ -8,9 +8,8 @@ export function TextArea(props: TextAreaProps) {
     return (
 
         
-        <CustomTextArea {...props}>
-            Bio
-        </CustomTextArea>
+        <CustomTextArea {...props}/>
+         
     );
 
 }

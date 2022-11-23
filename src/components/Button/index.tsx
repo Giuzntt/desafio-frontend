@@ -1,16 +1,15 @@
-import { CustomButton } from "./styles";
+import { Box } from "./styles";
 
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
 
-export default function Button({children, ...rest}: ButtonProps) {
+export default function Button({children, ...props}: ButtonProps) {
     return (
-        <CustomButton {...rest}
-        >
-            {children}
-        </CustomButton>
-    )
+        <Box>
+            <button {...props}>{children}</button>
+        </Box>
+    );
 }
 
 

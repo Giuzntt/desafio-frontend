@@ -8,7 +8,9 @@ export const CustomTextArea = styled("textarea", {
     width: '100%',
     height: '92px',
     background: 'var(--bg-text-field)',
-    border: '1px solid var(--border-text-field)',
+   
+    
+    border: '1px solid var( --bg-text-field)',
     borderRadius: '8px',
     padding: '1rem',
     color: 'var(--text-placeholder)',
@@ -19,4 +21,9 @@ export const CustomTextArea = styled("textarea", {
     resize: 'none',
     outline: 'none',
     transition: 'all 0.2s ease-in-out',
+
+    '&:focus': {
+        border: '1px solid var(--border-text-field)',
+        color: 'var(--txt-home)',
+    },
 });

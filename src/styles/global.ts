@@ -5,7 +5,11 @@ export const globalStyles = globalCss({
         margin: 0,
         padding: 0,
         boxSizing: 'border-box',
-        fontFamily: 'Poppins'
+        fontFamily: 'Poppins',
+
+        // remove scrollX and scrollY
+        overflowX: 'hidden',
+        overflowY: 'hidden'
     },
     'body':{
         backgroundColor: 'var(--bg-body)',
