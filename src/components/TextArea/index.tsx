@@ -1,15 +1,19 @@
+import { forwardRef } from "react";
 import { CustomTextArea } from "./styles";
 
 
 interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
 
-export function TextArea(props: TextAreaProps) {
+const  TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({...props}, ref) => {
     return (
 
         
-        <CustomTextArea {...props}/>
+        <CustomTextArea {...props}  ref={ref} />
          
     );
 
-}
+})
+
+
+export default TextArea;

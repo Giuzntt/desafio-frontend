@@ -90,9 +90,190 @@ export const ContainerWrapper = styled('div',{
             },
 
 
-        }
 
-    }        
+        }
+    },    
+    
+    'media (max-width: 1024px)': {
+            maxWidth: '100%',
+            padding: '0 1rem',
+            margin: '0 auto',
+            '.card': {
+                margin: '8rem auto',
+                width: 820,
+                height: 428,
+                maxWidth: 600,
+                padding: '1rem',
+                background: 'var(bg-cardfeedback)',
+                opacity: 0.7,
+                backdropFilter: 'blur(100px)',
+                mixBlendMode: 'normal',
+                border: '1px solid var(--border-card)',
+                borderRadius: '8px',
+                boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '1rem',
+
+                '.card-content': {
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '1rem',
+
+                    ".sphere":{
+                        width: '78px',
+                        height: '78px',
+                        background: 'var(--bg-sphere)',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    },
+                    'hr':{
+                        width: 43,
+                        height: 11,
+                        background: 'var(--green)',
+                        border: 'none',
+                        borderRadius: '50px',
+                    },
+                    'h6': {
+                        lineHeight: '130%',
+                        fontSize: '35px',
+                        fontWeight: '700',
+                        color: 'var(--txt-home)',
+                    },
+                    'p': {
+                        fontSize: '1rem',
+                        color: 'var(--txt-home)',
+                    },
+                }
+            },
+        },
+        'media (max-width: 768px)': {
+            maxWidth: '100%',
+            padding: '0 1rem',
+            margin: '0 auto',
+            '.card': {
+                margin: '8rem auto',
+                width: 820,
+                height: 428,
+                maxWidth: 600,
+                padding: '1rem',
+                background: 'var(bg-cardfeedback)',
+                opacity: 0.7,
+                backdropFilter: 'blur(100px)',
+                mixBlendMode: 'normal',
+                border: '1px solid var(--border-card)',
+                borderRadius: '8px',
+                boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '1rem',
+
+                ".sphere":{
+                    width: '78px',
+                    height: '78px',
+                    background: 'var(--bg-sphere)',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                },
+                'hr':{
+                    width: 43,
+                    height: 11,
+                    background: 'var(--green)',
+                    border: 'none',
+                    borderRadius: '50px',
+                },
+                'h6': {
+                    lineHeight: '130%',
+                    fontSize: '35px',
+                    fontWeight: '700',
+                    color: 'var(--txt-home)',
+                },
+                'p': {
+                    fontSize: '1rem',
+                    color: 'var(--txt-home)',
+                },
+            }
+        },
+        'media (max-width: 425px)': {
+            maxWidth: '100%',
+            padding: '0 1rem',
+            margin: '0 auto',
+            '.card': {
+                margin: '8rem auto',
+                width: 820,
+                height: 428,
+                maxWidth: 600,
+                padding: '1rem',
+                background: 'var(bg-cardfeedback)',
+                opacity: 0.7,
+                backdropFilter: 'blur(100px)',
+                mixBlendMode: 'normal',
+                border: '1px solid var(--border-card)',
+                borderRadius: '8px',
+                boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '1rem',
+            ".sphere":{
+                width: '78px',
+                height: '78px',
+                background: 'var(--bg-sphere)',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+            },
+            'hr':{
+                width: 43,
+                height: 11,
+                background: 'var(--green)',
+                border: 'none',
+                borderRadius: '50px',
+            },
+            'h6': {
+                lineHeight: '130%',
+                fontSize: '35px',
+                fontWeight: '700',
+                color: 'var(--txt-home)',
+            },
+            'p': {
+                fontSize: '1rem',
+                color: 'var(--txt-home)',
+            },
+        }
+    },
+
+
+
+            
+                '.card-content': {
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '1rem',
+
+                    
+
+
+
+                }
+
+        
 
 
 

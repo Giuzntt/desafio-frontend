@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { CustomSelect } from "./styles";
 
 
@@ -5,24 +6,25 @@ interface SelectProps {
     options: Array<{ value: string; label: string }>;
 }
 
-export default function SelectField({ options, ...rest }: SelectProps) {
+const SelectField= forwardRef<HTMLSelectElement, SelectProps>(({ options }, ref) => {
+
     return (
         <CustomSelect>
-            <select {...rest}>
-                {options.map((option) => (
-                    
-                    option.value === '0' ?
-                    (<option key={option.value} value={option.value} disabled selected>{option.label}</option>)
-                    :
-                    (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
-                            </option>
-
+            <select defaultValue={''}    ref={ref}>
+                {options.map((option) =>
+                    option.value === '0' ? (
+                        <option key={option.value}  value=''  disabled>
+                            {option.label}
+                        </option>
+                    ) : (
+                        <option key={option.value} value={option.value}>
+                            {option.label}
+                        </option>
                     )
-                
-                ))}
+                )}
             </select>
         </CustomSelect>
     );
-}
+})
+
+export default  SelectField ;
