@@ -216,7 +216,7 @@ export const Card = styled('div', {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: '1.2rem',
+        gap: '1rem',
         padding: ' 2.8rem',
         
         h5: {
@@ -235,7 +235,6 @@ export const Card = styled('div', {
             lineHeight: '130%',
             fontWeight: '300'
         },
-
         
         '.btn-home': {
             width: '100%',

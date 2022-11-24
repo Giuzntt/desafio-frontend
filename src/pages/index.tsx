@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Image from 'next/image';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { IFormInput } from '../@types/User';
 import Button from '../components/Button'
 import CheckBox from '../components/CheckBox';
 import SelectField from '../components/SelectField';
@@ -10,16 +11,6 @@ import TextField from '../components/TextField';
 import { BgGlobe, Card, ContainerHome } from './Home/styles';
 
 
-export interface IFormInput {
-    nome: string;
-    sobrenome: string;
-    email: string;
-    dataNascimento: string;
-    senha: string;
-    bio: string;
-    localidade: string;
-    notificacoes: boolean;
-}
 
 
 
@@ -27,7 +18,7 @@ const Home: NextPage = () => {
 
 
     // set initial value input date empty
-    const [date, setDate] = useState('');
+    
 
 
     let fieldsSelect = [
@@ -42,7 +33,7 @@ const Home: NextPage = () => {
 
 
     const onSubmit = (data: IFormInput) => {
-        console.log(data);
+        createUser(data);
     }
 
     return (
@@ -60,7 +51,7 @@ const Home: NextPage = () => {
                                 type="text"
                                 spellCheck={true}
                                 
-                                {...register('nome',{
+                                {...register('firstName',{
                                     required: 'Campo obrigatório',
                                     minLength: {
                                         value: 3,
@@ -72,20 +63,22 @@ const Home: NextPage = () => {
                                     },
                                     pattern: {
                                         value: /^[A-Za-z]+$/i,
-                                        message: 'Somente letras'
+                                        message: 'Nome inválido, apenas letras'
                                     }})
 
 
                             }
+                                errorMessage={errors.firstName?.message}
                             />
+                            
 
-                            {/* <TextField
+                            <TextField
                                 label="Sobrenome"
                                 // name="sobrenome"
                                 type="text"
                                 spellCheck={true}
                                 // required={true}
-                                {...register('sobrenome', {
+                                {...register('lastName', {
                                     required: 'Campo obrigatório',
                                     minLength: {
                                         value: 3,
@@ -93,11 +86,12 @@ const Home: NextPage = () => {
                                     },
                                     pattern: {
                                         value: /^[A-Za-z]+$/i,
-                                        message: 'Somente letras'
+                                        message: 'Sobrenome inválido, apenas letras'
                                     }
                                 })}
-                            /> */}
-                            {/* <TextField
+                                errorMessage={errors.lastName?.message}
+                            />
+                            <TextField
                                 label="E-mail"
                                 type="email"
                                 spellCheck={true}
@@ -108,36 +102,40 @@ const Home: NextPage = () => {
                                         message: 'E-mail inválido'
                                     }
                                 })}
-                            /> */}
-                            {/* <TextField
+                                errorMessage={errors.email?.message}
+                            />
+                            <TextField
                                 label="Data de nascimento"
                                 // name="dataNascimento"
                                 type="date"
                                 spellCheck={true}
                                 required={true}
-                                {...register('dataNascimento', {
+                                {...register('dateOfBirthday', {
                                     required: 'Campo obrigatório',
                                     pattern: {
-                                        value: /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/i,
+                                        // regex date yyyy-mm-dd
+                                        value:   /^(19[5-9][0-9]|20[0-4][0-9]|2050)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/,
                                         message: 'Data inválida'
                                     }
                                 })}
-                            /> */}
-                            {/* <TextField
+                                errorMessage={errors.dateOfBirthday?.message}
+                            />
+                            <TextField
                                 label="Senha"
                                 type="password"
                                 spellCheck={true}
-                                {...register('senha', {
+                                {...register('password', {
                                     required: 'Campo obrigatório',
                                     minLength: {
                                         value: 6,
                                         message: 'Mínimo de 6 caracteres'
                                     },
                                     pattern: {
-                                        value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/i,
-                                        message: 'Mínimo de 6 caracteres, pelo menos uma letra e um número'
+                                        value:  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/i,
+                                        message:'Senha inválida, mínimo de 6 caracteres, pelo menos uma letra e um número, pelo menos um caracteres especial'
                                     }
                                 })}
+                                errorMessage={errors.password?.message}
                             />
                             <TextArea
                                 placeholder="Bio"
@@ -152,8 +150,16 @@ const Home: NextPage = () => {
                                         message: 'Somente letras'
                                     }
                                 })}
+                                
                             />
-                            <SelectField options={fieldsSelect} {...register('localidade')} /> */}
+                            <SelectField options={fieldsSelect} {...register('country', {
+                                    required: 'Campo obrigatório',
+                                }                                        
+                            )
+
+                        }
+                        
+                        />
                             <Button className="btn-home" type="submit">
                                 Cadastrar
                             </Button>

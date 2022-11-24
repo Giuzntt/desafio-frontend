@@ -9,4 +9,5 @@
 
 ### 1.4 Padronizando os inputs de acordo com [layout](https://www.figma.com/file/bVq19HGbDCOCScIwLIBnbp/Teste-t%C3%A9cnico?node-id=0%3A1) do figma, configurando arquitetura do Stitches/Pattern, construindo telas de Cadastro de formulário/Feedback Usuário Cadastrado. 
 
-### 1.5 
+### 1.5 Validando campos com Expressões Regulares, Finalizando as Telas, Criando Usuário com  a API. Seguindo padronização de diretório do projeto.
+

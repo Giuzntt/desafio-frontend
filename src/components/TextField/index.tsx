@@ -4,11 +4,12 @@ import { Box } from "./styles";
 
 interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label: string;
+    errorMessage?: string;
 }
 
 
 
-const TextField = forwardRef<HTMLInputElement, TextFieldProps>(({label, ...props}, ref) => {
+const TextField = forwardRef<HTMLInputElement, TextFieldProps>(({ label, errorMessage, ...props}, ref) => {
   
     return (
         
@@ -17,6 +18,8 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(({label, ...props
 
             <input {...props} ref={ref} />
             <span className="placeholder">{label}</span>
+
+            <span className="errorMsg">{errorMessage}</span>
             </Box>
         </>
     );

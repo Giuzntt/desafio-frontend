@@ -7,6 +7,26 @@ export const Box = styled('div', {
     display: 'flex',
     margin: '0 auto',
     width: '100%',
+    
+    flexDirection: 'column',
+
+    '.errorMsg': {
+        // align initial div
+
+        FontSize: '0.75rem',
+        FontWeight: '400',
+        lineHeight: '130%',
+        FontStyle: 'normal',
+
+
+
+        flex: 'none',
+        alignSelf: 'flex-start',
+        color: 'var(--txt-error)',
+        fontSize: '0.875rem',
+
+
+    },
 
     '.placeholder': {
         margin: '.625rem 0',
