@@ -2,15 +2,19 @@ import { forwardRef } from "react";
 import { CustomTextArea } from "./styles";
 
 
-interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+    errorMessage?: string;
+}
 
 
-const  TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({...props}, ref) => {
+const  TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({errorMessage,...props}, ref) => {
     return (
-
-        
-        <CustomTextArea {...props}  ref={ref} />
-         
+      
+            <CustomTextArea  >
+                <textarea {...props} ref={ref} />
+                <span className="errorMsg">{errorMessage}</span>
+            </CustomTextArea>
+   
     );
 
 })

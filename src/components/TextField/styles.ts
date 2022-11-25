@@ -11,7 +11,7 @@ export const Box = styled('div', {
     flexDirection: 'column',
 
     '.errorMsg': {
-        // align initial div
+
 
         FontSize: '0.75rem',
         FontWeight: '400',
@@ -89,14 +89,20 @@ export const Box = styled('div', {
     input: {
         width: '100%',
         height: '2.8125rem',
-        border: '.0625rem solid var(--bg-text-field)',
+        border: '.0625rem solid var(--border-text-field)',
 
         backgroundColor: 'var(--bg-text-field)',
         borderRadius: '.25rem',
         padding: '.75rem .75rem',
         fontSize: '1rem',
         color: 'var(--txt-home)',
-        '&:focus, &:valid': {
+
+        
+
+
+
+        
+        '&:focus, &:valid ': {
             outline: 'none',
             border: '.0625rem solid var(--border-text-field)',
 

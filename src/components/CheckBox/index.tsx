@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import { CustomCheckBox } from "./styles";
 
 
-interface CheckBoxProps  extends React.InputHTMLAttributes<HTMLInputElement>  {
+interface CheckBoxrest  extends React.InputHTMLAttributes<HTMLInputElement>  {
     label: string;
    
 
@@ -10,10 +10,10 @@ interface CheckBoxProps  extends React.InputHTMLAttributes<HTMLInputElement>  {
 } 
 
 
-const  CheckBox = forwardRef<HTMLInputElement, CheckBoxProps>(({label, ...props}, ref) => {
+const  CheckBox = forwardRef<HTMLInputElement, CheckBoxrest>(({label, ...rest}, ref) => {
     return (
         <CustomCheckBox>
-            <input type="checkbox" {...props} ref={ref} />
+            <input type="checkbox" {...rest} ref={ref} />
             <label htmlFor="squaredFour">{label}</label>
         </CustomCheckBox>
     );

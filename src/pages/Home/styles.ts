@@ -216,7 +216,7 @@ export const Card = styled('div', {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: '1rem',
+        gap: '1.5rem',
         padding: ' 2.8rem',
         
         h5: {

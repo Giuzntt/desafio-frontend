@@ -3,12 +3,16 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { IFormInput } from '../@types/User';
+
 import Button from '../components/Button'
 import CheckBox from '../components/CheckBox';
 import SelectField from '../components/SelectField';
 import TextArea from '../components/TextArea';
 import TextField from '../components/TextField';
+import { useUser } from '../Hooks/useUser';
 import { BgGlobe, Card, ContainerHome } from './Home/styles';
+
+
 
 
 
@@ -22,24 +26,30 @@ const Home: NextPage = () => {
 
 
     let fieldsSelect = [
-        { value: '0', label: 'Selecione seu país' },
-        { value: '1', label: 'Brasil' },
-        { value: '2', label: 'Estados Unidos' },
-        { value: '3', label: 'Inglaterra' },
-    ]
+        { value: 0, label: 'Selecione seu país', disabled: true, selected: true },
+        { value: 1, label: 'Brasil' },
+        { value: 2, label: 'Estados Unidos' },
+        { value: 3, label: 'Inglaterra' }
+    ];
 
 
     const {handleSubmit, register,control, formState: { errors }} = useForm<IFormInput>({});
 
 
+    const {createUser} = useUser();
+
     const onSubmit = (data: IFormInput) => {
-        createUser(data);
+        if(data){
+            createUser(data);
+            
+        }
+
+         
     }
 
     return (
         <>
             <ContainerHome>
-                {/* <BgGlobe/> */}
                 <Card>
                     <div className="content-card">
                         <h5> Cadastre-se</h5>
@@ -50,8 +60,7 @@ const Home: NextPage = () => {
                                 label="Nome"
                                 type="text"
                                 spellCheck={true}
-                                
-                                {...register('firstName',{
+                                {...register('firstName', {
                                     required: 'Campo obrigatório',
                                     minLength: {
                                         value: 3,
@@ -64,13 +73,10 @@ const Home: NextPage = () => {
                                     pattern: {
                                         value: /^[A-Za-z]+$/i,
                                         message: 'Nome inválido, apenas letras'
-                                    }})
-
-
-                            }
+                                    }
+                                })}
                                 errorMessage={errors.firstName?.message}
                             />
-                            
 
                             <TextField
                                 label="Sobrenome"
@@ -114,7 +120,7 @@ const Home: NextPage = () => {
                                     required: 'Campo obrigatório',
                                     pattern: {
                                         // regex date yyyy-mm-dd
-                                        value:   /^(19[5-9][0-9]|20[0-4][0-9]|2050)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/,
+                                        value: /^(19[5-9][0-9]|20[0-4][0-9]|2050)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/,
                                         message: 'Data inválida'
                                     }
                                 })}
@@ -131,8 +137,8 @@ const Home: NextPage = () => {
                                         message: 'Mínimo de 6 caracteres'
                                     },
                                     pattern: {
-                                        value:  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/i,
-                                        message:'Senha inválida, mínimo de 6 caracteres, pelo menos uma letra e um número, pelo menos um caracteres especial'
+                                        value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/i,
+                                        message: 'Senha inválida, mínimo de 6 caracteres, pelo menos uma letra e um número, pelo menos um caracteres especial'
                                     }
                                 })}
                                 errorMessage={errors.password?.message}
@@ -150,20 +156,33 @@ const Home: NextPage = () => {
                                         message: 'Somente letras'
                                     }
                                 })}
-                                
+                                errorMessage={errors.bio?.message}
                             />
-                            <SelectField options={fieldsSelect} {...register('country', {
-                                    required: 'Campo obrigatório',
-                                }                                        
-                            )
+                            <SelectField
+                                options={fieldsSelect}
+                                {...register('country', {
+                                    required: 'Campo obrigatório'
+                                })}
+                            />
 
-                        }
-                        
-                        />
-                            <Button className="btn-home" type="submit">
+                            <Button
+                                className="btn-home"
+                                type="submit"
+                                disabled={
+                                    errors.firstName?.message ||
+                                    errors.lastName?.message ||
+                                    errors.email?.message ||
+                                    errors.dateOfBirthday?.message ||
+                                    errors.password?.message ||
+                                    errors.bio?.message ||
+                                    errors.country?.message
+                                        ? true
+                                        : false
+                                }
+                            >
                                 Cadastrar
                             </Button>
-                            {/* <CheckBox label="Desejo receber notificações" required={true} {...register('notificacoes')} /> */}
+                            <CheckBox label="Desejo receber notificações"  {...register('receiveNotifications')} />
                         </form>
                     </div>
                 </Card>

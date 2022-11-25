@@ -36,7 +36,7 @@ export const globalStyles = globalCss({
 
     },
 
-    // Definindo palette de cores
+
     ':root': {
         '--bg-text-field': '#2A2A2A',
         '--bg-body': '#121212',

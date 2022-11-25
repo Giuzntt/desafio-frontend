@@ -1,10 +1,10 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { IFormInput } from "../@types/User";
 import { api } from "../api/api";
 
 
 interface userProviderProps {
-    childreen: ReactNode;
+    children: ReactNode;
 }
 
 interface userContextData {
@@ -12,13 +12,23 @@ interface userContextData {
     createUser: (user: IFormInput) => Promise<void>;
 }
 
-const UserContext = createContext({} as userContextData);
+const UserContext = React.createContext({} as userContextData);
 
 
-export function UserProvider({ childreen }: userProviderProps) {
+export function UserProvider({ children }: userProviderProps) {
     const [user, setUser] = useState<IFormInput>({} as IFormInput);
 
+    useEffect(() => {
+        loadUserById('84');
 
+
+    }, []);
+
+
+    async function loadUserById(id: string) {
+        const response = await api.get(`/user/${id}`);
+        setUser(response.data);
+    }
 
     async function createUser(data: IFormInput) {
 
@@ -39,7 +49,7 @@ export function UserProvider({ childreen }: userProviderProps) {
 
     return (
         <UserContext.Provider value={{ user, createUser }}>
-            {childreen}
+            {children}
         </UserContext.Provider>
     )
 }

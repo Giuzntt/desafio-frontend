@@ -1,27 +1,29 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { CustomSelect } from "./styles";
 
 
 interface SelectProps {
-    options: Array<{ value: string; label: string }>;
+    options: Array<{ 
+        value: number;
+        label: string;
+        disabled?: boolean;
+        selected?: boolean;
+        
+    }>;
 }
 
-const SelectField= forwardRef<HTMLSelectElement, SelectProps>(({ options }, ref) => {
+const SelectField= forwardRef<HTMLSelectElement, SelectProps>(({ options, ...rest }, ref) => {
+
+ 
 
     return (
         <CustomSelect>
-            <select defaultValue={''}    ref={ref}>
-                {options.map((option) =>
-                    option.value === '0' ? (
-                        <option key={option.value}  value=''  disabled>
-                            {option.label}
-                        </option>
-                    ) : (
-                        <option key={option.value} value={option.value}>
-                            {option.label}
-                        </option>
-                    )
-                )}
+            <select ref={ref} {...rest} defaultValue=''>
+                {options.map((option, index) => (
+                    <option key={index} value={option.label} selected={option.selected} disabled={option.disabled}>
+                        {option.label}
+                    </option>
+                ))}
             </select>
         </CustomSelect>
     );
