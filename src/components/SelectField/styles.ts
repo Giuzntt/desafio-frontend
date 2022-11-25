@@ -7,7 +7,24 @@ export const CustomSelect = styled('div', {
     position: 'relative',
     display: 'flex',
     margin: '0 auto',
+    flexDirection: 'column',
     width: '100%',
+
+    '.errorMsg': {
+        FontSize: '0.75rem',
+        FontWeight: '400',
+        lineHeight: '130%',
+        FontStyle: 'normal',
+
+
+
+        flex: 'none',
+        alignSelf: 'flex-start',
+        color: 'var(--txt-error)',
+        fontSize: '0.875rem',
+
+
+    },
 
     select: {
         padding: '0.5rem 1rem',

@@ -28,7 +28,8 @@ export const Box = styled('div', {
         fontSize: '1rem',
         fontWeight: 'bold',
         lineHeight: '1',
-        // variants
+
+        
         variants: {
             size: {
                 sm: {

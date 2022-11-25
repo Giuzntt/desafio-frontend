@@ -10,6 +10,7 @@ interface userProviderProps {
 interface userContextData {
     user: IFormInput,
     createUser: (user: IFormInput) => Promise<void>;
+    loadUserById: (id: string) => Promise<void>;
 }
 
 const UserContext = React.createContext({} as userContextData);
@@ -18,14 +19,13 @@ const UserContext = React.createContext({} as userContextData);
 export function UserProvider({ children }: userProviderProps) {
     const [user, setUser] = useState<IFormInput>({} as IFormInput);
 
-    useEffect(() => {
-        loadUserById('84');
+   
 
 
-    }, []);
+    
 
 
-    async function loadUserById(id: string) {
+    async function loadUserById(id: string  ) {
         const response = await api.get(`/user/${id}`);
         setUser(response.data);
     }
@@ -48,7 +48,7 @@ export function UserProvider({ children }: userProviderProps) {
 
 
     return (
-        <UserContext.Provider value={{ user, createUser }}>
+        <UserContext.Provider value={{ user, createUser, loadUserById }}>
             {children}
         </UserContext.Provider>
     )

@@ -11,8 +11,6 @@ export const Box = styled('div', {
     flexDirection: 'column',
 
     '.errorMsg': {
-
-
         FontSize: '0.75rem',
         FontWeight: '400',
         lineHeight: '130%',

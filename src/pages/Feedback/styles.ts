@@ -67,6 +67,11 @@ export const ContainerWrapper = styled('div',{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+
+                h3: {
+                    
+                    TextTransform: 'uppercase',
+                }
             },
             'hr':{
                 width: 43,

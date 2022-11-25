@@ -1,11 +1,14 @@
 import type { NextPage } from 'next'
 import Image from 'next/image';
-import { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { Controller, useForm, useWatch } from 'react-hook-form';
 import { IFormInput } from '../@types/User';
+import { api } from '../api/api';
 
 import Button from '../components/Button'
 import CheckBox from '../components/CheckBox';
+import { Password } from '../components/Password';
 import SelectField from '../components/SelectField';
 import TextArea from '../components/TextArea';
 import TextField from '../components/TextField';
@@ -26,7 +29,7 @@ const Home: NextPage = () => {
 
 
     let fieldsSelect = [
-        { value: 0, label: 'Selecione seu país', disabled: true, selected: true },
+        { value: 0, label: 'Selecione seu país' },
         { value: 1, label: 'Brasil' },
         { value: 2, label: 'Estados Unidos' },
         { value: 3, label: 'Inglaterra' }
@@ -35,17 +38,43 @@ const Home: NextPage = () => {
 
     const {handleSubmit, register,control, formState: { errors }} = useForm<IFormInput>({});
 
+    const router = useRouter();
+    
+
 
     const {createUser} = useUser();
 
+    // data: IFormInput
+
     const onSubmit = (data: IFormInput) => {
-        if(data){
-            createUser(data);
-            
-        }
+        // console.log(data);
+
+        api.get('/user').then(response => {
+            const lastId = response.data[response.data.length - 1].id;
+           
+
+            if (data) {
+                createUser(data);
+
+                router.push({
+                    pathname: '/Feedback/[id]',
+                    query: { id: lastId }
+                });
+
+
+            }
+
+        })
+           
+
+       
 
          
-    }
+    }   
+
+ 
+
+
 
     return (
         <>
@@ -73,17 +102,25 @@ const Home: NextPage = () => {
                                     pattern: {
                                         value: /^[A-Za-z]+$/i,
                                         message: 'Nome inválido, apenas letras'
+                                    },
+
+                                    onBlur: (e) => {
+                                        // remove css default required
+                                        e.target.required = false;
+                                        
+                                        
+
                                     }
+
+
                                 })}
                                 errorMessage={errors.firstName?.message}
                             />
 
                             <TextField
                                 label="Sobrenome"
-                                // name="sobrenome"
                                 type="text"
                                 spellCheck={true}
-                                // required={true}
                                 {...register('lastName', {
                                     required: 'Campo obrigatório',
                                     minLength: {
@@ -93,14 +130,20 @@ const Home: NextPage = () => {
                                     pattern: {
                                         value: /^[A-Za-z]+$/i,
                                         message: 'Sobrenome inválido, apenas letras'
-                                    }
+                                    },
+
+                                  
                                 })}
                                 errorMessage={errors.lastName?.message}
                             />
+
+                               
+                                
+
+
                             <TextField
                                 label="E-mail"
                                 type="email"
-                                spellCheck={true}
                                 {...register('email', {
                                     required: 'Campo obrigatório',
                                     pattern: {
@@ -112,10 +155,9 @@ const Home: NextPage = () => {
                             />
                             <TextField
                                 label="Data de nascimento"
-                                // name="dataNascimento"
                                 type="date"
                                 spellCheck={true}
-                                required={true}
+                                
                                 {...register('dateOfBirthday', {
                                     required: 'Campo obrigatório',
                                     pattern: {
@@ -126,23 +168,32 @@ const Home: NextPage = () => {
                                 })}
                                 errorMessage={errors.dateOfBirthday?.message}
                             />
-                            <TextField
+                            <Password
                                 label="Senha"
                                 type="password"
-                                spellCheck={true}
+                                
                                 {...register('password', {
                                     required: 'Campo obrigatório',
                                     minLength: {
                                         value: 6,
                                         message: 'Mínimo de 6 caracteres'
                                     },
+                                    maxLength: {
+                                        value: 20,
+                                        message: 'Máximo de 20 caracteres'
+                                    },
                                     pattern: {
                                         value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/i,
                                         message: 'Senha inválida, mínimo de 6 caracteres, pelo menos uma letra e um número, pelo menos um caracteres especial'
+                                    },
+                                    onBlur: (e) => {
+                                        // remove css default required
+                                        e.target.required = false;
                                     }
                                 })}
                                 errorMessage={errors.password?.message}
                             />
+                          
                             <TextArea
                                 placeholder="Bio"
                                 {...register('bio', {
@@ -152,18 +203,36 @@ const Home: NextPage = () => {
                                         message: 'Mínimo de 10 caracteres'
                                     },
                                     pattern: {
-                                        value: /^[A-Za-z]+$/i,
-                                        message: 'Somente letras'
+                                        value: /^[A-Za-z0-9\s\W]+$/i,
+                                        message: 'Somente letras, espaços e caracteres especiais'
                                     }
                                 })}
                                 errorMessage={errors.bio?.message}
                             />
-                            <SelectField
-                                options={fieldsSelect}
-                                {...register('country', {
-                                    required: 'Campo obrigatório'
-                                })}
+                           <Controller
+                                name="country"
+                                control={control}
+                                rules={{ required: {
+                                    value: true,
+                                    message: 'Campo obrigatório'
+                                },
+                                }}
+                                
+                                
+                                    
+                                
+                                render={({ field }) => (
+                                    <SelectField
+                                        {...field}
+                                        options={fieldsSelect}
+                                        
+                                       errorMessage={errors.country?.message}
+                                    />
+                                )}
                             />
+
+
+
 
                             <Button
                                 className="btn-home"
@@ -175,9 +244,9 @@ const Home: NextPage = () => {
                                     errors.dateOfBirthday?.message ||
                                     errors.password?.message ||
                                     errors.bio?.message ||
-                                    errors.country?.message
-                                        ? true
-                                        : false
+                                    errors.country?.message ? true : false
+
+
                                 }
                             >
                                 Cadastrar

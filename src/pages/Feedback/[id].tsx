@@ -1,3 +1,6 @@
+import { useRouter } from "next/router";
+import { stringify } from "querystring";
+import { useEffect } from "react";
 import { useUser } from "../../Hooks/useUser";
 import { ContainerWrapper, Globe } from "./styles";
 
@@ -5,9 +8,26 @@ import { ContainerWrapper, Globe } from "./styles";
 
 export  default  function  Feedback ()   {
 
-         
+   useEffect(() => {
+     loadUser();
+    }, []);
 
-        const {user} = useUser();
+                     
+    
+    const {query} = useRouter();
+    
+    
+    const {user, loadUserById} = useUser();
+
+
+    let id = JSON.stringify(query.id)
+
+    function loadUser() {
+        
+        loadUserById(id.replace(/"/g, '').toString());
+      
+    }
+
 
 
 
@@ -21,8 +41,20 @@ export  default  function  Feedback ()   {
                             <div className="sphere">
                                 
                                 <h3>
-                                    {user.firstName.charAt(0)}
-                                    { user.lastName.charAt(0)}
+                                    {
+                                        
+                                        user.firstName.split('')[0]
+
+
+                                        
+                                      
+                                    }
+                                    {
+                                        user.lastName.split('')[0]
+                                    }
+                                        
+                                    
+                                   
                                 </h3>
                             </div>
                             <h6>
@@ -40,7 +72,8 @@ export  default  function  Feedback ()   {
                             })
                             
                             
-                            }</p>
+                            }
+                            </p>
                         </div>
                     </div>
                 </ContainerWrapper>

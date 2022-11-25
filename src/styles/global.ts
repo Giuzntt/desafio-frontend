@@ -39,6 +39,7 @@ export const globalStyles = globalCss({
 
     ':root': {
         '--bg-text-field': '#2A2A2A',
+        '--bg-disabled:': 'rgb(42,42,42, 0,7)',
         '--bg-body': '#121212',
         '--bg-card': '#151515',
         '--green': '#00F2B1',
